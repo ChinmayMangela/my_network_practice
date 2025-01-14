@@ -1,5 +1,4 @@
 
-
 enum Difficulty {
   easy,
   medium,
@@ -21,8 +20,8 @@ class Recipe {
   final String? name;
   final List<String>? ingredients;
   final List<String>? instructions;
-  final String? prepTimeMinutes;
-  final String? cookTimeMinutes;
+  final int? prepTimeMinutes;
+  final int? cookTimeMinutes;
   final int? servings;
   final String? imageUrl;
   final Difficulty? difficulty;
@@ -51,21 +50,38 @@ class Recipe {
   });
 
   factory Recipe.fromJson(Map<String, dynamic> quotesData) {
+
+    // Helper function to parse MealType string to MealType enum
+    List<MealType> parseMealType(List<String>? mealTypeString) {
+      return mealTypeString!.map((stringMealType) {
+        return MealType.values.firstWhere((mealType) {
+          return mealType.name.toLowerCase() == stringMealType.toLowerCase();
+        });
+      }).toList();
+    }
+
+    // Helper function to parse Difficulty string to Difficulty enum
+    Difficulty parseDifficulty(String? difficultyString) {
+      return Difficulty.values.firstWhere((difficulty) {
+        return difficulty.name.toLowerCase() == difficultyString!.toLowerCase();
+      });
+    }
+
     return Recipe(
       name: quotesData['name'],
-      ingredients: quotesData['ingredients'],
-      instructions: quotesData['instructions'],
-      prepTimeMinutes: quotesData['prepTimeMinutes'],
-      cookTimeMinutes: quotesData['cookTimeMinutes'],
-      servings: quotesData['servings'],
+      ingredients: quotesData['ingredients'] as List<String>?,
+      instructions: quotesData['instructions'] as List<String>?,
+      prepTimeMinutes: quotesData['prepTimeMinutes'] as int,
+      cookTimeMinutes: quotesData['cookTimeMinutes'] as int,
+      servings: quotesData['servings'] as int,
       imageUrl: quotesData['imageUrl'],
-      difficulty: quotesData['difficulty'],
+      difficulty: parseDifficulty(quotesData['difficulty'] as String?),
       caloriesPerServing: quotesData['caloriesPerServing'],
-      tags: quotesData['tags'],
+      tags: quotesData['tags'] as List<String>?,
       image: quotesData['image'],
-      rating: quotesData['rating'],
-      reviewCount: quotesData['reviewCount'],
-      mealType: quotesData['mealType'],
+      rating: quotesData['rating'] as double?,
+      reviewCount: quotesData['reviewCount'] as int,
+      mealType: parseMealType(quotesData['mealType']),
     );
   }
 
