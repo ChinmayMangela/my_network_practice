@@ -50,4 +50,23 @@ class Recipe {
     required this.mealType,
   });
 
+  factory Recipe.fromJson(Map<String, dynamic> quotesData) {
+    return Recipe(
+      name: quotesData['name'],
+      ingredients: quotesData['ingredients'],
+      instructions: quotesData['instructions'],
+      prepTimeMinutes: quotesData['prepTimeMinutes'],
+      cookTimeMinutes: quotesData['cookTimeMinutes'],
+      servings: quotesData['servings'],
+      imageUrl: quotesData['imageUrl'],
+      difficulty: quotesData['difficulty'],
+      caloriesPerServing: quotesData['caloriesPerServing'],
+      tags: quotesData['tags'],
+      image: quotesData['image'],
+      rating: quotesData['rating'],
+      reviewCount: quotesData['reviewCount'],
+      mealType: quotesData['mealType'],
+    );
+  }
+
 }
