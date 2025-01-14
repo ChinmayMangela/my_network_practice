@@ -9,17 +9,16 @@ enum MealType {
   breakfast,
   lunch,
   dinner,
-  snacks,
+  snack,
   dessert,
-  sideDish,
   appetizer,
   beverage,
 }
 
 class Recipe {
   final String? name;
-  final List<String>? ingredients;
-  final List<String>? instructions;
+  final List<String> ingredients;
+  final List<String> instructions;
   final int? prepTimeMinutes;
   final int? cookTimeMinutes;
   final int? servings;
@@ -56,7 +55,8 @@ class Recipe {
       return mealTypeString!.map((stringMealType) {
         return MealType.values.firstWhere((mealType) {
           return mealType.name.toLowerCase() == stringMealType.toLowerCase();
-        });
+        }, orElse: () => MealType.appetizer,
+        );
       }).toList();
     }
 
@@ -64,24 +64,31 @@ class Recipe {
     Difficulty parseDifficulty(String? difficultyString) {
       return Difficulty.values.firstWhere((difficulty) {
         return difficulty.name.toLowerCase() == difficultyString!.toLowerCase();
-      });
+      }, orElse: () => throw Exception(
+        'Invalid difficulty string: $difficultyString'
+      ));
     }
 
     return Recipe(
       name: quotesData['name'],
-      ingredients: quotesData['ingredients'] as List<String>?,
-      instructions: quotesData['instructions'] as List<String>?,
-      prepTimeMinutes: quotesData['prepTimeMinutes'] as int,
-      cookTimeMinutes: quotesData['cookTimeMinutes'] as int,
-      servings: quotesData['servings'] as int,
+      // Convert List<dynamic> to List<String> safely
+      ingredients: List<String>.from(quotesData['ingredients'] ?? []),
+      instructions: List<String>.from(quotesData['instructions'] ?? []),
+      prepTimeMinutes: quotesData['prepTimeMinutes'] as int?,
+      cookTimeMinutes: quotesData['cookTimeMinutes'] as int?,
+      servings: quotesData['servings'] as int?,
       imageUrl: quotesData['imageUrl'],
       difficulty: parseDifficulty(quotesData['difficulty'] as String?),
-      caloriesPerServing: quotesData['caloriesPerServing'],
-      tags: quotesData['tags'] as List<String>?,
+      caloriesPerServing: quotesData['caloriesPerServing'] as int?,
+      tags: quotesData['tags'] != null
+          ? List<String>.from(quotesData['tags'])
+          : null,
       image: quotesData['image'],
-      rating: quotesData['rating'] as double?,
-      reviewCount: quotesData['reviewCount'] as int,
-      mealType: parseMealType(quotesData['mealType']),
+      rating: (quotesData['rating'] is int ? (quotesData['rating'] as int).toDouble() : quotesData['rating']) as double?,
+      reviewCount: quotesData['reviewCount'] as int?,
+      mealType: quotesData['mealType'] != null
+          ? parseMealType(List<String>.from(quotesData['mealType']))
+          : null,
     );
   }
 

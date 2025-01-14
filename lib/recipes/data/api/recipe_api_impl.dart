@@ -16,7 +16,9 @@ class RecipeApiImpl extends RecipeApi {
         throw Exception('Failed to fetch recipes');
       }
     } catch (e) {
-      throw Exception('Something went wrong');
+      print('Error occurred while fetching recipes: $e');
+      throw Exception('Error occurred while fetching recipes: $e');
+
     }
   }
   

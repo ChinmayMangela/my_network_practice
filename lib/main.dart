@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_network_practice/quotes/presentation/screens/quotes_screen.dart';
+import 'package:my_network_practice/recipes/presentation/screens/recipe_list_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: QuotesScreen(),
+      home: RecipeListScreen(),
     );
   }
 }
