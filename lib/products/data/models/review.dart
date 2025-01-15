@@ -18,6 +18,7 @@ class Review {
 
   factory Review.fromJson(Map<String, dynamic> reviewData) {
 
+    // Helper function to parse date string into valid datetime object
     DateTime parseDate(String? dateString) {
       // convert string date into DateTime
       final dateTime = DateTime.parse(dateString!);
