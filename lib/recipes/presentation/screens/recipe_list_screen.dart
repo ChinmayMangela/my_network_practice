@@ -18,6 +18,7 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: _buildBody(),
     );
   }
