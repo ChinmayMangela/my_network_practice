@@ -29,15 +29,15 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> productData) {
     return Product(
-      title: productData['title'],
-      description: productData['description'],
-      category: productData['category'],
+      title: productData['title'] ?? '',
+      description: productData['description'] ?? '',
+      category: productData['category'] ?? '',
       // check if price is valid and convert to double if needed
       price: (productData['price'] as num?)?.toDouble(),
       rating: (productData['rating'] as num?)?.toDouble(),
       tags: List<String>.from(productData['tags'] ?? []), // convert to List<String> if needed
-      brand: productData['brand'],
-      returnPolicy: productData['returnPolicy'],
+      brand: productData['brand'] ?? '',
+      returnPolicy: productData['returnPolicy'] ?? '',
       image: productData['images'][0],
       thumbnail: productData['thumbnail'],
 

@@ -16,7 +16,7 @@ class ProductsApiImpl extends ProductApi {
         final List<dynamic> products = productsData['products'];
         return products.map((product) => Product.fromJson(product)).toList();
       } else {
-        throw Exception('Failed to fetch products');
+        throw Exception('Http Error: ${response.statusCode}');
       }
     } catch (e) {
       throw Exception('Failed to fetch products');
