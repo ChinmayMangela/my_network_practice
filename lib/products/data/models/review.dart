@@ -35,8 +35,8 @@ class Review {
       rating: reviewData['rating'] ?? 0.0,
       comment: reviewData['comment'] ?? '',
       // date: parseDate(reviewData['data'] ?? DateTime.now()),
-      reviewName: reviewData['reviewName'] ?? '',
-      reviewerEmail: reviewData['reviewerEmail'] ?? '',
+      reviewName: reviewData['reviewName'] ?? 'Unavailable',
+      reviewerEmail: reviewData['reviewerEmail'] ?? 'Unavailable',
     );
   }
 }
