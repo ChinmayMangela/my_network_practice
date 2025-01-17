@@ -15,6 +15,10 @@ class Address {
     required this.stateCode,
   });
 
+  String getFormattedAddress() {
+    return '$address, $city, $state $postalCode, $country';
+  }
+
   factory Address.fromJson(Map<String, dynamic> addressData) {
     return Address(
       address: addressData['address'] ?? 'Unknown',
