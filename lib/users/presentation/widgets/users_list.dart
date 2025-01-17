@@ -15,6 +15,6 @@ class UsersList extends StatelessWidget {
     return ListView.builder(itemBuilder: (context, index) {
       final currentUser = users[index];
       return UserTile(user: currentUser);
-    });
+    }, itemCount: users.length,);
   }
 }

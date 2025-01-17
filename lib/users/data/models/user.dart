@@ -31,8 +31,8 @@ class User {
   final String? birthDate;
   final String? image;
   final BloodGroup? bloodGroup;
-  final String? height;
-  final String? weight;
+  final double? height;
+  final double? weight;
   final String? eyeColor;
   final Hair? hair;
   final Address? address;
@@ -104,8 +104,8 @@ class User {
       birthDate: userData['birthDate'] ?? 'Unknown',
       image: userData['image'] ?? 'Unknown',
       bloodGroup: parseBloodGroup(userData['bloodGroup']),
-      height: userData['height'] ?? 'Unknown',
-      weight: userData['weight'] ?? 'Unknown',
+      height: userData['height'].toDouble() ?? 153.9,
+      weight: userData['weight'].toDouble() ?? 69.5,
       eyeColor: userData['eyeColor'] ?? 'Unknown',
       hair: Hair.fromJson(userData['hair']),
       address: Address.fromJson(userData['address']),

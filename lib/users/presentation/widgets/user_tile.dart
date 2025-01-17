@@ -11,7 +11,9 @@ class UserTile extends StatelessWidget {
     return ListTile(
       leading: Image.network(user.image!),
       title: Text('${user.firstName} ${user.lastName}'),
-      subtitle: Text(user.email!),
+      subtitle: Text(user.email!, style: TextStyle(
+        fontSize: 10,
+      ),),
       trailing: Text(user.phone!),
     );
   }

@@ -20,6 +20,7 @@ class UserApiImpl extends UserApi {
         throw Exception('HTTP error ${response.statusCode}');
       }
     } catch (e) {
+      print('Error fetching users: $e');
       throw Exception('Error fetching users: $e');
     }
   }
